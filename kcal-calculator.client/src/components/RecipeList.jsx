@@ -14,24 +14,22 @@ export default function RecipeList() {
     }
 
     return (
-        <>
-            <table>
-                <thead>
-                    <tr>
-                        <th>name</th>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {recipes && recipes.map(recipe => (
+                    <tr key={recipe.id}>
+                        <td>{recipe.name}</td>
+                        <td><button>edit</button></td>
+                        <td><button>delete</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {recipes && recipes.map(recipe => (
-                        <tr key={recipe.id}>
-                            <td>{recipe.name}</td>
-                            <td><button>edit</button></td>
-                            <td><button>delete</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button onClick={() => console.log(recipes)}>test</button>
-        </>
+                ))}
+                <tr><td colSpan={3}><button style={{ width: "100%" }}>+</button></td></tr>
+            </tbody>
+        </table>
     )
 }

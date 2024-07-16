@@ -14,30 +14,28 @@ export default function IngredientList() {
     }
 
     return (
-        <>
-            <table>
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>protein</th>
-                        <th>carbs</th>
-                        <th>fats</th>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>protein</th>
+                    <th>carbs</th>
+                    <th>fats</th>
+                </tr>
+            </thead>
+            <tbody>
+                {ingredients && ingredients.map(ingredient => (
+                    <tr key={ingredient.id}>
+                        <td>{ingredient.name}</td>
+                        <td>{ingredient.protein}</td>
+                        <td>{ingredient.carbs}</td>
+                        <td>{ingredient.fats}</td>
+                        <td><button>edit</button></td>
+                        <td><button>delete</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {ingredients && ingredients.map(ingredient => (
-                        <tr key={ingredient.id}>
-                            <td>{ingredient.name}</td>
-                            <td>{ingredient.protein}</td>
-                            <td>{ingredient.carbs}</td>
-                            <td>{ingredient.fats}</td>
-                            <td><button>edit</button></td>
-                            <td><button>delete</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button onClick={() => console.log(ingredients)}>test</button>
-        </>
+                ))}
+                <tr><td colSpan={6}><button style={{ width: "100%" }}>+</button></td></tr>
+            </tbody>
+        </table>
     )
 }
