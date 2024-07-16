@@ -1,6 +1,6 @@
 namespace kcal_calculator.Server
 {
-    public class WeatherForecast
+    public class Ingredient
     {
         public DateOnly Date { get; set; }
 
