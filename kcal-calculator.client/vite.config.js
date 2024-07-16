@@ -46,6 +46,10 @@ export default defineConfig({
             '^/ingredients': {
                 target,
                 secure: false
+            },
+            '^/recipes': {
+                target,
+                secure: false
             }
         },
         port: 5173,
