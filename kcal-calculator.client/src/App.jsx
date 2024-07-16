@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
+import IngredientList from './components/IngredientList';
 
 export default function App() {
-    const [ingredients, setIngredients] = useState();
-
-    useEffect(() => {
-        populateIngredients();
-    }, []);
-
-    async function populateIngredients() {
-        const response = await fetch('ingredients');
-        const data = await response.json();
-        setIngredients(data);
-    }
-
-    return <button onClick={() => console.log(ingredients)}>test</button>
+    return (
+        <>
+            <IngredientList />
+        </>
+    )
 
 }

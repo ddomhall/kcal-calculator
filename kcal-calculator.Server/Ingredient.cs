@@ -2,12 +2,10 @@ namespace kcal_calculator.Server
 {
     public class Ingredient
     {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string? Summary { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public double Protein { get; set; }
+        public double Carbs { get; set; }
+        public double Fats { get; set; }
     }
 }
