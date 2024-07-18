@@ -1,18 +1,4 @@
-import { useEffect, useState } from 'react';
-
-export default function IngredientList() {
-    const [ingredients, setIngredients] = useState();
-
-    useEffect(() => {
-        populateIngredients();
-    }, []);
-
-    async function populateIngredients() {
-        const response = await fetch('ingredients');
-        const data = await response.json();
-        setIngredients(data);
-    }
-
+export default function IngredientList({ ingredients, setSelection }) {
     return (
         <table>
             <thead>
@@ -26,7 +12,7 @@ export default function IngredientList() {
             <tbody>
                 {ingredients && ingredients.map(ingredient => (
                     <tr key={ingredient.id}>
-                        <td>{ingredient.name}</td>
+                        <td> <button onClick={() => setSelection(ingredient)}>{ingredient.name}</button> </td>
                         <td>{ingredient.protein}</td>
                         <td>{ingredient.carbs}</td>
                         <td>{ingredient.fats}</td>

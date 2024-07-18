@@ -1,18 +1,4 @@
-import { useEffect, useState } from 'react';
-
-export default function RecipeList() {
-    const [recipes, setRecipes] = useState();
-
-    useEffect(() => {
-        populateRecipes();
-    }, []);
-
-    async function populateRecipes() {
-        const response = await fetch('recipes');
-        const data = await response.json();
-        setRecipes(data);
-    }
-
+export default function RecipeList({ recipes, setSelection }) {
     return (
         <table>
             <thead>
@@ -23,7 +9,7 @@ export default function RecipeList() {
             <tbody>
                 {recipes && recipes.map(recipe => (
                     <tr key={recipe.id}>
-                        <td>{recipe.name}</td>
+                        <td> <button onClick={() => setSelection(recipe)}>{recipe.name}</button> </td>
                         <td><button>edit</button></td>
                         <td><button>delete</button></td>
                     </tr>

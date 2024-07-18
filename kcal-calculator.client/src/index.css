@@ -79,3 +79,9 @@ td {
   border-collapse: collapse;
   padding: 6px;
 }
+
+#mainContainer {
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+}
