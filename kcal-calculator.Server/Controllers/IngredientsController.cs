@@ -14,7 +14,7 @@ namespace kcal_calculator.Server.Controllers
         }
 
         [HttpGet(Name = "GetIngredients")]
-        public IEnumerable<Ingredient> Get()
+        public static IEnumerable<Ingredient> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new Ingredient
             {
