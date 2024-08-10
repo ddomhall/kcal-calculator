@@ -6,25 +6,22 @@ namespace kcal_calculator.Server.Controllers
     [Route("[controller]")]
     public class IngredientsController : ControllerBase
     {
-        private readonly ILogger<IngredientsController> _logger;
-
-        public IngredientsController(ILogger<IngredientsController> logger)
+        [HttpGet]
+        public List<Ingredient> Get()
         {
-            _logger = logger;
-        }
-
-        [HttpGet(Name = "GetIngredients")]
-        public static IEnumerable<Ingredient> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new Ingredient
+            List<Ingredient> ingredients = new List<Ingredient>();
+            for (int i = 0; i < 5; i++)
             {
-                Id = index,
-                Name = "ingredient" + index,
-                Protein = index,
-                Carbs = index,
-                Fats = index,
-            })
-            .ToArray();
+                ingredients.Add(new Ingredient
+                {
+                    Id = i,
+                    Name = "ingredient" + i,
+                    Protein = i,
+                    Carbs = i,
+                    Fats = i,
+                });
+            }
+            return ingredients;
         }
     }
 }

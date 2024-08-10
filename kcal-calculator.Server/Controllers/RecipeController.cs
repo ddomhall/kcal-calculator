@@ -6,19 +6,23 @@ namespace kcal_calculator.Server.Controllers
     [Route("[controller]")]
     public class RecipesController : ControllerBase
     {
-        private readonly ILogger<RecipesController> _logger;
-
-        public RecipesController(ILogger<RecipesController> logger)
+        [HttpGet]
+        public List<Recipe> Get()
         {
-            _logger = logger;
-        }
+            List<Ingredient> ingredients = new List<Ingredient>();
+            for (int i = 0; i < 5; i++)
+            {
+                ingredients.Add(new Ingredient
+                {
+                    Id = i,
+                    Name = "ingredient" + i,
+                    Protein = i,
+                    Carbs = i,
+                    Fats = i,
+                });
+            }
 
-        [HttpGet(Name = "GetRecipes")]
-        public IEnumerable<Recipe> Get()
-        {
-            IEnumerable<Ingredient> ingredients = IngredientsController.Get();
-            List<IngredientListItem> ingredientList = [];
-
+            List<IngredientListItem> ingredientList = new List<IngredientListItem>();
             foreach (Ingredient ingredient in ingredients)
             {
                 ingredientList.Add(new IngredientListItem()
@@ -28,13 +32,17 @@ namespace kcal_calculator.Server.Controllers
                 });
             }
 
-            return Enumerable.Range(1, 5).Select(index => new Recipe
+            List<Recipe> recipes = new List<Recipe>();
+            for (int i = 0; i < 3; i++)
             {
-                Id = index,
-                Name = "recipe" + index,
-                Ingredients = ingredientList
-            })
-            .ToArray();
+                recipes.Add(new Recipe
+                {
+                    Id = i,
+                    Name = "recipe" + i,
+                    Ingredients = ingredientList
+                });
+            }
+            return recipes;
         }
     }
 }
