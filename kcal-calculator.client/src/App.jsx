@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import IngredientList from './components/IngredientList';
 import RecipeList from './components/RecipeList';
+import IngredientList from './components/IngredientList';
 
 export default function App() {
     const [page, setPage] = useState("day")

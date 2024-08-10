@@ -7,7 +7,7 @@ namespace kcal_calculator.Server.Controllers
     public class IngredientsController : ControllerBase
     {
         [HttpGet]
-        public List<Ingredient> Get()
+        public List<Ingredient> GetAll()
         {
             List<Ingredient> ingredients = new List<Ingredient>();
             for (int i = 0; i < 5; i++)
@@ -22,6 +22,19 @@ namespace kcal_calculator.Server.Controllers
                 });
             }
             return ingredients;
+        }
+
+        [HttpGet("{id}")]
+        public Ingredient Get(int id)
+        {
+            return new Ingredient
+            {
+                Id = id,
+                Name = "ingredient" + id,
+                Protein = id,
+                Carbs = id,
+                Fats = id,
+            };
         }
     }
 }
