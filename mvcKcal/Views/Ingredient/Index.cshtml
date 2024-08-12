@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Ingredient>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>ingredient index</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>protein</th>
+            <th>carbs</th>
+            <th>fats</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ingredient ingredient in Model)
+        {
+            <tr>
+                <td>@ingredient.Name</td>
+                <td>@ingredient.Protein</td>
+                <td>@ingredient.Carbs</td>
+                <td>@ingredient.Fats</td>
+                <td><button class="btn btn-dark">edit</button></td>
+                <td><button class="btn btn-dark">delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
