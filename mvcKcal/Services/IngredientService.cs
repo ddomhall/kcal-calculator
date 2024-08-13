@@ -3,6 +3,7 @@
 public class IngredientService
 {
     static List<Ingredient> ingredients { get; }
+    static int nextId = 2;
 
     static IngredientService()
     {
@@ -14,4 +15,6 @@ public class IngredientService
     }
 
     public static List<Ingredient> GetAll() => ingredients;
+
+    public static Ingredient? Get(int id) => ingredients.FirstOrDefault(i => i.Id == id);
 }

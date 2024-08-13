@@ -21,7 +21,7 @@
         @foreach (Ingredient ingredient in Model)
         {
             <tr>
-                <td>@ingredient.Name</td>
+                <td><a asp-controller="Ingredient" asp-action="Detail" asp-route-id="@ingredient.Id">@ingredient.Name</a></td>
                 <td>@ingredient.Protein</td>
                 <td>@ingredient.Carbs</td>
                 <td>@ingredient.Fats</td>

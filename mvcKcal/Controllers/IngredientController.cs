@@ -9,5 +9,11 @@ namespace mvcKcal.Controllers
             List<Ingredient> ingredients = IngredientService.GetAll();
             return View(ingredients);
         }
+
+        public IActionResult Detail(int id)
+        {
+            Ingredient? ingredient = IngredientService.Get(id);
+            return View(ingredient);
+        }
     }
 }
