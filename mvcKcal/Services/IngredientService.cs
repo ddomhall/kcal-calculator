@@ -2,19 +2,17 @@
 
 public class IngredientService
 {
-    static List<Ingredient> ingredients { get; }
-    static int nextId = 2;
-
-    static IngredientService()
-    {
-        ingredients = new List<Ingredient>
-        {
-            new Ingredient {Id = 0, Name = "ingredient0", Protein = 0, Carbs = 0, Fats = 0},
-            new Ingredient {Id = 1, Name = "ingredient1", Protein = 1, Carbs = 1, Fats = 1},
-        };
-    }
+    static List<Ingredient> ingredients = new List<Ingredient>();
+    static int nextId = 0;
 
     public static List<Ingredient> GetAll() => ingredients;
 
-    public static Ingredient? Get(int id) => ingredients.FirstOrDefault(i => i.Id == id);
+    public static Ingredient? Get(int id) => ingredients.First(i => i.Id == id);
+
+    public static void Create(Ingredient ingredient)
+    {
+        ingredient.Id = nextId++;
+        ingredients.Add(ingredient);
+    }
+
 }

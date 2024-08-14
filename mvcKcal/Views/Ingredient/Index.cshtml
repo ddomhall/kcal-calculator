@@ -1,33 +1,32 @@
 ﻿@model IEnumerable<Ingredient>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 
-<h1>ingredient index</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>name</th>
-            <th>protein</th>
-            <th>carbs</th>
-            <th>fats</th>
-            <th>edit</th>
-            <th>delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Ingredient ingredient in Model)
-        {
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>ingredients</h1>
+        <a asp-controller="Ingredient" asp-action="Create" class="btn btn-dark">create</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>protein</th>
+                <th>carbs</th>
+                <th>fats</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Ingredient ingredient in Model)
+            {
             <tr>
                 <td><a asp-controller="Ingredient" asp-action="Detail" asp-route-id="@ingredient.Id">@ingredient.Name</a></td>
                 <td>@ingredient.Protein</td>
                 <td>@ingredient.Carbs</td>
                 <td>@ingredient.Fats</td>
-                <td><button class="btn btn-dark">edit</button></td>
-                <td><button class="btn btn-dark">delete</button></td>
+                <td>
+                    <button class="btn btn-dark">edit</button>
+                    <button class="btn btn-dark">delete</button>
+                </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
