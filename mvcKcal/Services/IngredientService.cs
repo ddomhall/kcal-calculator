@@ -18,10 +18,14 @@ public class IngredientService
     public static void Update(Ingredient ingredient)
     {
         int index = ingredients.FindIndex(p => p.Id == ingredient.Id);
-        if (index != -1)
-        {
-            ingredients[index] = ingredient;
-        }
+        if (index != -1) ingredients[index] = ingredient;
+        return;
+    }
+
+    public static void Delete(int id)
+    {
+        Ingredient? ingredient = Get(id);
+        if (ingredient != null) ingredients.Remove(ingredient);
         return;
     }
 }
