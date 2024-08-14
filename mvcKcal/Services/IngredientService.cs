@@ -15,4 +15,13 @@ public class IngredientService
         ingredients.Add(ingredient);
     }
 
+    public static void Update(Ingredient ingredient)
+    {
+        int index = ingredients.FindIndex(p => p.Id == ingredient.Id);
+        if (index != -1)
+        {
+            ingredients[index] = ingredient;
+        }
+        return;
+    }
 }

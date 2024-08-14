@@ -24,9 +24,24 @@ namespace mvcKcal.Controllers
         [HttpPost]
         public IActionResult Create(Ingredient ingredient)
         {
-            Console.WriteLine(ingredient.Id);
             IngredientService.Create(ingredient);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Update(int id)
+        {
+            Ingredient? ingredient = IngredientService.Get(id);
+            return View(ingredient);
+        }
+
+
+        [HttpPost]
+        public IActionResult Update(Ingredient ingredient)
+        {
+            IngredientService.Update(ingredient);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

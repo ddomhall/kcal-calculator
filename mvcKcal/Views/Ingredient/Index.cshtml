@@ -23,7 +23,7 @@
                 <td>@ingredient.Carbs</td>
                 <td>@ingredient.Fats</td>
                 <td>
-                    <button class="btn btn-dark">edit</button>
+                    <a asp-controller="Ingredient" asp-action="update" asp-route-id="@ingredient.Id" class="btn btn-dark">update</a>
                     <button class="btn btn-dark">delete</button>
                 </td>
             </tr>
