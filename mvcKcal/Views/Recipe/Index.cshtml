@@ -1,0 +1,32 @@
+@model IEnumerable<Recipe>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>recipes</h1>
+        <a asp-controller="Recipes" asp-action="Create" class="btn btn-dark">create</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>protein</th>
+                <th>carbs</th>
+                <th>fats</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Recipe recipe in Model)
+            {
+            <tr>
+                <td><a asp-controller="Recipe" asp-action="Detail" asp-route-id="@recipe.Id">@recipe.Name</a></td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Protein)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Carbs)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Fats)</td>
+                <td>
+                    <a asp-controller="Recipe" asp-action="Update" asp-route-id="@recipe.Id" class="btn btn-dark">update</a>
+                    <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-dark">delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
