@@ -1,0 +1,27 @@
+@model Recipe
+
+<h1>@Model.Name</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>ingredient</td>
+            <td>quantity</td>
+            <td>protein</td>
+            <td>carbs</td>
+            <td>fats</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (IngredientListItem ingredient in Model.Ingredients)
+        {
+        <tr>
+            <td>@ingredient.Ingredient.Name</td>
+            <td>@ingredient.Quantity</td>
+            <td>@(ingredient.Ingredient.Protein * ingredient.Quantity)</td>
+            <td>@(ingredient.Ingredient.Carbs * ingredient.Quantity)</td>
+            <td>@(ingredient.Ingredient.Fats * ingredient.Quantity)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

@@ -35,7 +35,7 @@ public class RecipeService
                     {
                         new IngredientListItem
                         {
-                            Quantity = 1,
+                            Quantity = 5,
                             Ingredient = new Ingredient
                             {
                                 Id = 1,
@@ -48,13 +48,10 @@ public class RecipeService
                     }
                 },
         };
-        // Ingredient ingredient = new Ingredient { Id = 0, Name = "i0", Protein = 0, Carbs = 0, Fats = 0 };
-        // IngredientListItem ingredientList = new IngredientListItem { Ingredient = ingredient, Quantity = 0 };
-        // Recipe recipe = new Recipe { Id = 0, Name = "r0", Ingredients = new List<IngredientListItem>() };
-        // recipe.Ingredients.Add(ingredientList);
-        // recipes.Add(recipe);
     }
 
     public static List<Recipe> GetAll() => recipes;
+
+    public static Recipe? Get(int id) => recipes.Find(i => i.Id == id);
 }
 
