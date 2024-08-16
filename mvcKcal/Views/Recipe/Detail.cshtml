@@ -1,6 +1,26 @@
 @model RecipeViewModel
 
 <h1>@Model.Name</h1>
+<h2>overall</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>protein</th>
+            <th>carbs</th>
+            <th>fats</th>
+            <th>calories</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
+        </tr>
+    </tbody>
+</table>
+<h2>ingredient detail</h2>
 <table class="table">
     <thead>
         <tr>

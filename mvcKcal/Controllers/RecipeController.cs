@@ -49,17 +49,26 @@ namespace mvcKcal.Controllers
             return View(recipeVM);
         }
 
-        // public IActionResult Create()
-        // {
-        //     return View();
-        // }
-        //
-        // [HttpPost]
-        // public IActionResult Create(Recipe recipe)
-        // {
-        //     RecipeService.Create(recipe);
-        //     return RedirectToAction("Index");
-        // }
+        public IActionResult Create()
+        {
+            RecipeAndIngredientViewModel recipeAndIngredients = new RecipeAndIngredientViewModel
+            {
+                Recipe = new Recipe(),
+                Ingredients = IngredientService.GetAll()
+            };
+            return View(recipeAndIngredients);
+        }
+
+        [HttpPost]
+        public IActionResult Create(string name, List<IngredientListItem> ingredients)
+        {
+            RecipeService.Create(new Recipe
+            {
+                Name = name,
+                Ingredients = ingredients,
+            });
+            return RedirectToAction("Index");
+        }
     }
 }
 
