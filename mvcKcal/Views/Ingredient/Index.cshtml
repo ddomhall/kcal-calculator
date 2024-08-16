@@ -11,6 +11,7 @@
                 <th>protein</th>
                 <th>carbs</th>
                 <th>fats</th>
+                <th>calories</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>@ingredient.Protein</td>
                 <td>@ingredient.Carbs</td>
                 <td>@ingredient.Fats</td>
+                <td>@ingredient.Calories</td>
                 <td>
                     <a asp-controller="Ingredient" asp-action="Update" asp-route-id="@ingredient.Id" class="btn btn-dark">update</a>
                     <a asp-controller="Ingredient" asp-action="Delete" asp-route-id="@ingredient.Id" class="btn btn-dark">delete</a>

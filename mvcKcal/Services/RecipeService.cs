@@ -5,8 +5,8 @@ public class RecipeService
     static List<Recipe> recipes { get; }
     static RecipeService()
     {
-        IngredientService.Create(new Ingredient { Name = "i0", Protein = 0, Carbs = 0, Fats = 0 });
-        IngredientService.Create(new Ingredient { Name = "i1", Protein = 1, Carbs = 1, Fats = 1 });
+        IngredientService.Create(new Ingredient { Name = "i0", Protein = 0, Carbs = 0, Fats = 0, Calories = 0 });
+        IngredientService.Create(new Ingredient { Name = "i1", Protein = 1, Carbs = 1, Fats = 1, Calories = 1 });
         recipes = new List<Recipe>
         {
             new Recipe

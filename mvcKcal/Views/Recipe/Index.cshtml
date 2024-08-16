@@ -11,6 +11,7 @@
                 <th>protein</th>
                 <th>carbs</th>
                 <th>fats</th>
+                <th>calories</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>@recipe.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
                 <td>@recipe.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
                 <td>@recipe.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
                 <td>
                     <a asp-controller="Recipe" asp-action="Update" asp-route-id="@recipe.Id" class="btn btn-dark">update</a>
                     <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-dark">delete</a>
