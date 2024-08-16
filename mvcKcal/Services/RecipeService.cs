@@ -5,26 +5,20 @@ public class RecipeService
     static List<Recipe> recipes { get; }
     static RecipeService()
     {
+        IngredientService.Create(new Ingredient { Name = "i0", Protein = 0, Carbs = 0, Fats = 0 });
+        IngredientService.Create(new Ingredient { Name = "i1", Protein = 1, Carbs = 1, Fats = 1 });
         recipes = new List<Recipe>
         {
             new Recipe
             {
-                    Id = 0,
+                Id = 0,
                    Name = "r0",
                    Ingredients = new List<IngredientListItem>
                    {
                        new IngredientListItem
                        {
                            Quantity = 0,
-                           Ingredient = new Ingredient
-                           {
-                               Id = 0,
-                               Name = "i0",
-                               Protein = 0,
-                               Carbs = 0,
-                               Fats = 0
-                           }
-                       }
+                           IngredientId = 0,                       }
                    }
             },
                 new Recipe
@@ -35,15 +29,8 @@ public class RecipeService
                     {
                         new IngredientListItem
                         {
-                            Quantity = 5,
-                            Ingredient = new Ingredient
-                            {
-                                Id = 1,
-                                Name = "i1",
-                                Protein = 1,
-                                Carbs = 1,
-                                Fats = 1
-                            }
+                            Quantity = 2,
+                            IngredientId = 1,
                         }
                     }
                 },

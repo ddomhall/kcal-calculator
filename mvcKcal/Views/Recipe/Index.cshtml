@@ -1,4 +1,4 @@
-@model IEnumerable<Recipe>
+@model IEnumerable<RecipeViewModel>
 
     <div class="d-flex justify-content-between align-items-center">
         <h1>recipes</h1>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Recipe recipe in Model)
+            @foreach (RecipeViewModel recipe in Model)
             {
             <tr>
                 <td><a asp-controller="Recipe" asp-action="Detail" asp-route-id="@recipe.Id">@recipe.Name</a></td>

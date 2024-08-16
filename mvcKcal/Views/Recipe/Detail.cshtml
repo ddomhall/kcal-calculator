@@ -1,4 +1,4 @@
-@model Recipe
+@model RecipeViewModel
 
 <h1>@Model.Name</h1>
 <table class="table">
@@ -12,10 +12,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (IngredientListItem ingredient in Model.Ingredients)
+        @foreach (IngredientListItemViewModel ingredient in Model.Ingredients)
         {
         <tr>
-            <td>@ingredient.Ingredient.Name</td>
+            <td><a asp-controller="Ingredient" asp-action="Detail" asp-route-id="@ingredient.Ingredient.Id">@ingredient.Ingredient.Name</a></td>
             <td>@ingredient.Quantity</td>
             <td>@(ingredient.Ingredient.Protein * ingredient.Quantity)</td>
             <td>@(ingredient.Ingredient.Carbs * ingredient.Quantity)</td>
