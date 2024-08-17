@@ -15,11 +15,17 @@ public class RecipeService
         recipes.Add(recipe);
     }
 
+    public static void Update(Recipe recipe)
+    {
+        int index = recipes.FindIndex(p => p.Id == recipe.Id);
+        if (index != -1) recipes[index] = recipe;
+    }
+
+
     public static void Delete(int id)
     {
         Recipe? recipe = Get(id);
         if (recipe != null) recipes.Remove(recipe);
-        return;
     }
 }
 

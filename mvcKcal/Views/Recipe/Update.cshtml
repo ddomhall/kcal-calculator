@@ -2,15 +2,17 @@
 
 <h1 class="text-center">update recipe</h1>
 <div class="w-25 m-auto">
-    <form method="post" asp-action="Create" class="d-flex flex-column gap-2" id="recipeForm">
+    <form method="post" asp-action="Update" class="d-flex flex-column gap-2" id="recipeForm">
         <div class="d-flex justify-content-between">
             <label>name</label>
-            <input name="Name" autofocus/>
+            <input asp-for="@Model.Recipe.Name" autofocus/>
         </div>
+        @for (int i = 0; i < @Model.Recipe.Ingredients.Count(); i++)
+        {
         <hr/>
         <div class="d-flex justify-content-between">
             <label>ingredient</label>
-            <select name="[0].IngredientId">
+            <select asp-for="@Model.Recipe.Ingredients[i].IngredientId">
                 @foreach (Ingredient ingredient in @Model.Ingredients)
                 {
                 <option value="@ingredient.Id">@ingredient.Name</option>
@@ -19,14 +21,15 @@
         </div>
         <div class="d-flex justify-content-between">
             <label>quantity</label>
-            <input name="[0].Quantity"/>
+            <input asp-for="@Model.Recipe.Ingredients[i].Quantity"/>
         </div>
+        }
         <button id="addField" type="button">add</button>
         <button class="btn btn-dark">create</button>
     </form>
 </div>
 <script>
-let counter = 0
+let counter = -1
 const addField = document.getElementById("addField")
 addField.addEventListener("click", () => {
     counter += 1
@@ -37,7 +40,7 @@ addField.addEventListener("click", () => {
             <select name="[${counter}].IngredientId">
                 @foreach (Ingredient ingredient in @Model.Ingredients)
                 {
-<option value="@ingredient.Id">@ingredient.Name</option>
+                    <option value="@ingredient.Id">@ingredient.Name</option>
                 }
             </select>
         </div>

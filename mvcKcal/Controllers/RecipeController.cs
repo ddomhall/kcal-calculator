@@ -70,6 +70,27 @@ namespace mvcKcal.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Update(int id)
+        {
+            RecipeAndIngredientViewModel recipeAndIngredients = new RecipeAndIngredientViewModel
+            {
+                Recipe = RecipeService.Get(id),
+                Ingredients = IngredientService.GetAll()
+            };
+            return View(recipeAndIngredients);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Recipe recipe, List<IngredientListItem> ingredients)
+        {
+            foreach (IngredientListItem ingredient in ingredients)
+            {
+                recipe.Ingredients.Add(ingredient);
+            }
+            RecipeService.Update(recipe);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Delete(int id)
         {
             RecipeService.Delete(id);
