@@ -69,6 +69,12 @@ namespace mvcKcal.Controllers
             });
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(int id)
+        {
+            RecipeService.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }
 

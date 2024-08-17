@@ -14,5 +14,12 @@ public class RecipeService
         recipe.Id = nextId++;
         recipes.Add(recipe);
     }
+
+    public static void Delete(int id)
+    {
+        Recipe? recipe = Get(id);
+        if (recipe != null) recipes.Remove(recipe);
+        return;
+    }
 }
 
