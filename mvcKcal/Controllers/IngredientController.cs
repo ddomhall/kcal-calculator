@@ -44,6 +44,14 @@ namespace mvcKcal.Controllers
 
         public IActionResult Delete(int id)
         {
+            List<Recipe> recipes = RecipeService.GetAll();
+            foreach (Recipe recipe in recipes)
+            {
+                foreach (IngredientListItem ingredient in recipe.Ingredients)
+                {
+                    if (ingredient.IngredientId == id) return View("Error", "recipe exists with this ingredient");
+                }
+            }
             IngredientService.Delete(id);
             return RedirectToAction("Index");
         }
