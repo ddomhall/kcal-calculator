@@ -1,8 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<RecipeViewModel>
+@{
+    ViewData["Title"] = "Day View";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>recipe</th>
+            <th>protein</th>
+            <th>carbs</th>
+            <th>fats</th>
+            <th>calories</th>
+        </tr>
+    </thead>
+    <tbody>
+            @if (Model.Count() == 0){
+            <tr><td colspan="5" class="text-center">no recipes added</td></tr>
+            }
+            @foreach (RecipeViewModel recipe in Model)
+            {
+            <tr>
+                <td><a asp-controller="Recipe" asp-action="Detail" asp-route-id="@recipe.Id">@recipe.Name</a></td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
+                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
+            </tr>
+            }
+            <tr>
+                <th>total</th>
+                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Protein))</td>
+                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs))</td>
+                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats))</td>
+                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories))</td>
+            </tr>
+    </tbody>
+</table>

@@ -8,13 +8,27 @@ namespace mvcKcal.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            List<Recipe> recipes = RecipeService.GetAll();
+            List<RecipeViewModel> recipeVMs = new List<RecipeViewModel>();
+            foreach (Recipe recipe in recipes)
+            {
+                RecipeViewModel recipeVM = new RecipeViewModel
+                {
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    Ingredients = new List<IngredientListItemViewModel>(),
+                };
+                foreach (IngredientListItem ingredient in recipe.Ingredients)
+                {
+                    recipeVM.Ingredients.Add(new IngredientListItemViewModel
+                    {
+                        Ingredient = IngredientService.Get(ingredient.IngredientId),
+                        Quantity = ingredient.Quantity,
+                    });
+                }
+                recipeVMs.Add(recipeVM);
+            }
+            return View(recipeVMs);
         }
     }
 }
