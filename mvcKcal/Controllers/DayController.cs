@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace mvcKcal.Controllers
 {
-    public class HomeController : Controller
+    public class DayController : Controller
     {
         public IActionResult Index()
         {
