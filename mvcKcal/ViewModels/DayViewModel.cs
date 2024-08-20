@@ -1,7 +1,8 @@
-public class Day
+public class DayViewModel
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public List<int> RecipeIds { get; set; }
+    public List<RecipeViewModel>? Recipes { get; set; }
 }
+
 

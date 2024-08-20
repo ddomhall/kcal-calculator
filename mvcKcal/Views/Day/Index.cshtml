@@ -1,8 +1,12 @@
-﻿@model List<RecipeViewModel>
+﻿@model List<DayViewModel>
 @{
     ViewData["Title"] = "Day View";
 }
 
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>days</h1>
+        <a asp-controller="Day" asp-action="Create" class="btn btn-dark">create</a>
+    </div>
 <table class="table">
     <thead>
         <tr>
@@ -14,25 +18,29 @@
         </tr>
     </thead>
     <tbody>
-            @if (Model.Count() == 0){
+            @if (Model.Count() == 0)
+            {
             <tr><td colspan="5" class="text-center">no recipes added</td></tr>
             }
-            @foreach (RecipeViewModel recipe in Model)
+            else
+            {
+            @foreach (DayViewModel day in Model)
             {
             <tr>
-                <td><a asp-controller="Recipe" asp-action="Detail" asp-route-id="@recipe.Id">@recipe.Name</a></td>
-                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
-                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
-                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
-                <td>@recipe.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
+                <td><a asp-controller="Day" asp-action="Detail" asp-route-id="@day.Id">@day.Name</a></td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Protein * j.Quantity))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs * j.Quantity))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats * j.Quantity))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories * j.Quantity))</td>
             </tr>
             }
             <tr>
                 <th>total</th>
-                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Protein))</td>
-                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs))</td>
-                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats))</td>
-                <td>@Model.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories))</td>
+                <td>@Model.Sum(i => i.Recipes.Sum(j => j.Ingredients.Sum(k => k.Ingredient.Protein)))</td>
+                <td>@Model.Sum(i => i.Recipes.Sum(j => j.Ingredients.Sum(k => k.Ingredient.Carbs)))</td>
+                <td>@Model.Sum(i => i.Recipes.Sum(j => j.Ingredients.Sum(k => k.Ingredient.Fats)))</td>
+                <td>@Model.Sum(i => i.Recipes.Sum(j => j.Ingredients.Sum(k => k.Ingredient.Calories)))</td>
             </tr>
+            }
     </tbody>
 </table>

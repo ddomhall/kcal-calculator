@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using mvcKcal.Models;
-using System.Diagnostics;
 
 namespace mvcKcal.Controllers
 {
@@ -8,27 +6,37 @@ namespace mvcKcal.Controllers
     {
         public IActionResult Index()
         {
-            List<Recipe> recipes = RecipeService.GetAll();
-            List<RecipeViewModel> recipeVMs = new List<RecipeViewModel>();
-            foreach (Recipe recipe in recipes)
+            List<Day> days = DayService.GetAll();
+            List<DayViewModel> dayVMs = new List<DayViewModel>();
+            foreach (Day day in days)
             {
-                RecipeViewModel recipeVM = new RecipeViewModel
+                DayViewModel dayVM = new DayViewModel
                 {
-                    Id = recipe.Id,
-                    Name = recipe.Name,
-                    Ingredients = new List<IngredientListItemViewModel>(),
+                    Id = day.Id,
+                    Name = day.Name,
+                    Recipes = new List<RecipeViewModel>()
                 };
-                foreach (IngredientListItem ingredient in recipe.Ingredients)
+                foreach (int recipeId in day.RecipeIds)
                 {
-                    recipeVM.Ingredients.Add(new IngredientListItemViewModel
+                    Recipe? recipe = RecipeService.Get(recipeId);
+                    RecipeViewModel recipeVM = new RecipeViewModel
                     {
-                        Ingredient = IngredientService.Get(ingredient.IngredientId),
-                        Quantity = ingredient.Quantity,
-                    });
+                        Id = recipe.Id,
+                        Name = recipe.Name,
+                        Ingredients = new List<IngredientListItemViewModel>(),
+                    };
+                    foreach (IngredientListItem ingredient in recipe.Ingredients)
+                    {
+                        recipeVM.Ingredients.Add(new IngredientListItemViewModel
+                        {
+                            Quantity = ingredient.Quantity,
+                            Ingredient = IngredientService.Get(ingredient.IngredientId),
+                        });
+                    }
+                    dayVM.Recipes.Add(recipeVM);
                 }
-                recipeVMs.Add(recipeVM);
             }
-            return View(recipeVMs);
+            return View(dayVMs);
         }
     }
 }
