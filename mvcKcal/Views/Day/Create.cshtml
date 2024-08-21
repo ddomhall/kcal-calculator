@@ -1,0 +1,42 @@
+@model DayAndRecipeViewModel
+
+<h1 class="text-center">create day</h1>
+<div class="w-25 m-auto">
+    <form method="post" asp-action="Create" class="d-flex flex-column gap-2">
+        <div class="d-flex justify-content-between">
+            <label>name</label>
+            <input name="Name" autofocus/>
+        </div>
+        <hr/>
+        <div class="d-flex justify-content-between">
+            <label>recipe</label>
+            <select name="[0].ReceipeIds">
+                @foreach (Recipe recipe in @Model.Recipes)
+                {
+                <option value="@recipe.Id">@recipe.Name</option>
+                }
+            </select>
+        </div>
+        <button id="addField" type="button">add</button>
+        <button class="btn btn-dark">create</button>
+    </form>
+</div>
+<script>
+let counter = 0
+const addField = document.getElementById("addField")
+addField.addEventListener("click", () => {
+    counter += 1
+    addField.insertAdjacentHTML("beforeBegin", `
+        <hr/>
+        <div class="d-flex justify-content-between">
+            <label>recipe</label>
+            <select name="[${counter}].ReceipeIds">
+                @foreach (Recipe recipe in @Model.Recipes)
+                {
+<option value="@recipe.Id">@recipe.Name</option>
+                }
+            </select>
+        </div>
+`)})
+</script>
+

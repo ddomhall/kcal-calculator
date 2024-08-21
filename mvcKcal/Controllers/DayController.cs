@@ -35,8 +35,20 @@ namespace mvcKcal.Controllers
                     }
                     dayVM.Recipes.Add(recipeVM);
                 }
+                dayVMs.Add(dayVM);
             }
             return View(dayVMs);
+        }
+
+        public IActionResult Test()
+        {
+            DayService.Create(new Day
+            {
+                Id = 0,
+                Name = "d1",
+                RecipeIds = new List<int> { 0 }
+            });
+            return RedirectToAction("Index");
         }
     }
 }
