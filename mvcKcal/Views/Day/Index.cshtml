@@ -11,11 +11,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>recipe</th>
+                <th>day</th>
                 <th>protein</th>
                 <th>carbs</th>
                 <th>fats</th>
                 <th>calories</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,10 @@
                 <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs * j.Quantity))</td>
                 <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats * j.Quantity))</td>
                 <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories * j.Quantity))</td>
+                <td>
+                    <button class="btn btn-dark">edit</button>
+                    <button class="btn btn-dark">delete</button>
+                </td>
             </tr>
             }
             }
