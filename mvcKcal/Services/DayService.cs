@@ -27,6 +27,20 @@ public class DayService
         Day? day = Get(id);
         if (day != null) days.Remove(day);
     }
-}
 
+    public static DayViewModel DayToVM(Day day)
+    {
+        DayViewModel dayVM = new DayViewModel
+        {
+            Id = day.Id,
+            Name = day.Name,
+            Recipes = new List<RecipeViewModel>()
+        };
+        foreach (int recipeId in day.RecipeIds)
+        {
+            dayVM.Recipes.Add(RecipeService.RecipeToVM(RecipeService.Get(recipeId)));
+        }
+        return dayVM;
+    }
+}
 
