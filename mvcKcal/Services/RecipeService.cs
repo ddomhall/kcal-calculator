@@ -27,5 +27,24 @@ public class RecipeService
         Recipe? recipe = Get(id);
         if (recipe != null) recipes.Remove(recipe);
     }
+
+    public static RecipeViewModel RecipeToVM(Recipe recipe)
+    {
+        RecipeViewModel recipeVM = new RecipeViewModel
+        {
+            Id = recipe.Id,
+            Name = recipe.Name,
+            Ingredients = new List<IngredientListItemViewModel>()
+        };
+        foreach (IngredientListItem ingredient in recipe.Ingredients)
+        {
+            recipeVM.Ingredients.Add(new IngredientListItemViewModel
+            {
+                Quantity = ingredient.Quantity,
+                Ingredient = IngredientService.Get(ingredient.IngredientId)
+            });
+        }
+        return recipeVM;
+    }
 }
 

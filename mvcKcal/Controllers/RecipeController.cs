@@ -10,43 +10,14 @@ namespace mvcKcal.Controllers
             List<RecipeViewModel> recipeVMs = new List<RecipeViewModel>();
             foreach (Recipe recipe in recipes)
             {
-                RecipeViewModel recipeVM = new RecipeViewModel
-                {
-                    Id = recipe.Id,
-                    Name = recipe.Name,
-                    Ingredients = new List<IngredientListItemViewModel>(),
-                };
-                foreach (IngredientListItem ingredient in recipe.Ingredients)
-                {
-                    recipeVM.Ingredients.Add(new IngredientListItemViewModel
-                    {
-                        Quantity = ingredient.Quantity,
-                        Ingredient = IngredientService.Get(ingredient.IngredientId),
-                    });
-                }
-                recipeVMs.Add(recipeVM);
+                recipeVMs.Add(RecipeService.RecipeToVM(recipe));
             }
             return View(recipeVMs);
         }
 
         public IActionResult Detail(int id)
         {
-            Recipe? recipe = RecipeService.Get(id);
-            RecipeViewModel recipeVM = new RecipeViewModel
-            {
-                Id = recipe.Id,
-                Name = recipe.Name,
-                Ingredients = new List<IngredientListItemViewModel>()
-            };
-            foreach (IngredientListItem ingredient in recipe.Ingredients)
-            {
-                recipeVM.Ingredients.Add(new IngredientListItemViewModel
-                {
-                    Quantity = ingredient.Quantity,
-                    Ingredient = IngredientService.Get(ingredient.IngredientId)
-                });
-            }
-            return View(recipeVM);
+            return View(RecipeService.RecipeToVM(RecipeService.Get(id)));
         }
 
         public IActionResult Create()
