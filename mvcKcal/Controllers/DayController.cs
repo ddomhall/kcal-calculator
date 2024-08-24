@@ -20,6 +20,29 @@ namespace mvcKcal.Controllers
             return View(DayService.DayToVM(DayService.Get(id)));
         }
 
+        public IActionResult Create()
+        {
+            DayAndRecipeViewModel dayAndRecipeVM = new DayAndRecipeViewModel
+            {
+                Day = new Day(),
+                Recipes = RecipeService.GetAll(),
+            };
+            return View(dayAndRecipeVM);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Day day, List<int> recipeIds)
+        {
+            Console.WriteLine(day.Id);
+            foreach (int recipeId in day.RecipeIds)
+            {
+                Console.WriteLine(recipeId);
+            }
+            Console.WriteLine(day.Name);
+            DayService.Create(day);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Test()
         {
             DayService.Create(new Day

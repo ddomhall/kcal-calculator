@@ -10,7 +10,7 @@
         <hr/>
         <div class="d-flex justify-content-between">
             <label>recipe</label>
-            <select name="[0].ReceipeIds">
+            <select name="RecipeIds[]">
                 @foreach (Recipe recipe in @Model.Recipes)
                 {
                 <option value="@recipe.Id">@recipe.Name</option>
@@ -25,15 +25,14 @@
 let counter = 0
 const addField = document.getElementById("addField")
 addField.addEventListener("click", () => {
-    counter += 1
     addField.insertAdjacentHTML("beforeBegin", `
         <hr/>
         <div class="d-flex justify-content-between">
             <label>recipe</label>
-            <select name="[${counter}].ReceipeIds">
+            <select name="RecipeIds[]">
                 @foreach (Recipe recipe in @Model.Recipes)
                 {
-<option value="@recipe.Id">@recipe.Name</option>
+                <option value="@recipe.Id">@recipe.Name</option>
                 }
             </select>
         </div>
