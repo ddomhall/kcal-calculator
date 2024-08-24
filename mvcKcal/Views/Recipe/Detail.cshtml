@@ -1,34 +1,15 @@
 @model RecipeViewModel
 
 <h1>@Model.Name</h1>
-<h2>overall</h2>
 <table class="table">
     <thead>
         <tr>
+            <th>ingredient</th>
+            <th>quantity</th>
             <th>protein</th>
             <th>carbs</th>
             <th>fats</th>
             <th>calories</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
-        </tr>
-    </tbody>
-</table>
-<h2>ingredient detail</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <td>ingredient</td>
-            <td>quantity</td>
-            <td>protein</td>
-            <td>carbs</td>
-            <td>fats</td>
         </tr>
     </thead>
     <tbody>
@@ -40,8 +21,16 @@
             <td>@(ingredient.Ingredient.Protein * ingredient.Quantity)</td>
             <td>@(ingredient.Ingredient.Carbs * ingredient.Quantity)</td>
             <td>@(ingredient.Ingredient.Fats * ingredient.Quantity)</td>
+            <td>@(ingredient.Ingredient.Calories * ingredient.Quantity)</td>
         </tr>
         }
+        <tr>
+            <th colspan="2">total</th>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
+        </tr>
     </tbody>
 </table>
 
