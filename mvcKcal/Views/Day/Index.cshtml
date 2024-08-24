@@ -34,7 +34,7 @@
                 <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats * j.Quantity))</td>
                 <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories * j.Quantity))</td>
                 <td>
-                    <button class="btn btn-dark">edit</button>
+                    <a class="btn btn-dark" asp-controller="Day" asp-action="Update" asp-route-id="@day.Id">edit</a>
                     <a class="btn btn-dark" asp-controller="Day" asp-action="Delete" asp-route-id="@day.Id">delete</a>
                 </td>
             </tr>

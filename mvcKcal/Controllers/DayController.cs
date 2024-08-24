@@ -43,6 +43,23 @@ namespace mvcKcal.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Update(int id)
+        {
+            DayAndRecipeViewModel dayAndRecipeVM = new DayAndRecipeViewModel
+            {
+                Day = DayService.Get(id),
+                Recipes = RecipeService.GetAll(),
+            };
+            return View(dayAndRecipeVM);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Day day)
+        {
+            DayService.Update(day);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Delete(int id)
         {
             DayService.Delete(id);
