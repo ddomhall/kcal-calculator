@@ -33,12 +33,6 @@ namespace mvcKcal.Controllers
         [HttpPost]
         public IActionResult Create(Day day)
         {
-            Console.WriteLine(day.Id);
-            foreach (int recipeId in day.RecipeIds)
-            {
-                Console.WriteLine(recipeId);
-            }
-            Console.WriteLine(day.Name);
             DayService.Create(day);
             return RedirectToAction("Index");
         }
