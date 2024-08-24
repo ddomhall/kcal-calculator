@@ -64,6 +64,14 @@ namespace mvcKcal.Controllers
 
         public IActionResult Delete(int id)
         {
+            List<Day> days = DayService.GetAll();
+            foreach (Day day in days)
+            {
+                foreach (int recipe in day.RecipeIds)
+                {
+                    if (recipe == id) return View("Error", "day exists with this recipe");
+                }
+            }
             RecipeService.Delete(id);
             return RedirectToAction("Index");
         }

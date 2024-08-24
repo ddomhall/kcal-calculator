@@ -31,7 +31,7 @@ namespace mvcKcal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Day day, List<int> recipeIds)
+        public IActionResult Create(Day day)
         {
             Console.WriteLine(day.Id);
             foreach (int recipeId in day.RecipeIds)
@@ -43,14 +43,9 @@ namespace mvcKcal.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Test()
+        public IActionResult Delete(int id)
         {
-            DayService.Create(new Day
-            {
-                Id = 0,
-                Name = "d1",
-                RecipeIds = new List<int> { 0 }
-            });
+            DayService.Delete(id);
             return RedirectToAction("Index");
         }
     }
