@@ -40,7 +40,7 @@ public class RecipeService
         {
             recipeVM.Ingredients.Add(new IngredientListItemViewModel
             {
-                Quantity = ingredient.Quantity,
+                Grams = ingredient.Grams,
                 Ingredient = IngredientService.Get(ingredient.IngredientId)
             });
         }

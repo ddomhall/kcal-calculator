@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <th>ingredient</th>
-            <th>quantity</th>
+            <th>grams</th>
             <th>protein</th>
             <th>carbs</th>
             <th>fats</th>
@@ -17,19 +17,19 @@
         {
         <tr>
             <td><a asp-controller="Ingredient" asp-action="Detail" asp-route-id="@ingredient.Ingredient.Id">@ingredient.Ingredient.Name</a></td>
-            <td>@ingredient.Quantity</td>
-            <td>@(ingredient.Ingredient.Protein * ingredient.Quantity)</td>
-            <td>@(ingredient.Ingredient.Carbs * ingredient.Quantity)</td>
-            <td>@(ingredient.Ingredient.Fats * ingredient.Quantity)</td>
-            <td>@(ingredient.Ingredient.Calories * ingredient.Quantity)</td>
+            <td>@ingredient.Grams</td>
+            <td>@(ingredient.Ingredient.Protein * ingredient.Grams / 100)</td>
+            <td>@(ingredient.Ingredient.Carbs * ingredient.Grams / 100)</td>
+            <td>@(ingredient.Ingredient.Fats * ingredient.Grams / 100)</td>
+            <td>@(ingredient.Ingredient.Calories * ingredient.Grams / 100)</td>
         </tr>
         }
         <tr>
             <th colspan="2">total</th>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Protein * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Carbs * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Fats * i.Quantity)</td>
-            <td>@Model.Ingredients.Sum(i => i.Ingredient.Calories * i.Quantity)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Protein * i.Grams / 100)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Carbs * i.Grams / 100)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Fats * i.Grams / 100)</td>
+            <td>@Model.Ingredients.Sum(i => i.Ingredient.Calories * i.Grams / 100)</td>
         </tr>
     </tbody>
 </table>

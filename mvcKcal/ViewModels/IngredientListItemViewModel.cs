@@ -1,6 +1,6 @@
 public class IngredientListItemViewModel()
 {
-    public int Quantity { get; set; }
+    public int Grams { get; set; }
     public Ingredient? Ingredient { get; set; }
 }
 

@@ -29,10 +29,10 @@
             {
             <tr>
                 <td><a asp-controller="Day" asp-action="Detail" asp-route-id="@day.Id">@day.Name</a></td>
-                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Protein * j.Quantity))</td>
-                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs * j.Quantity))</td>
-                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats * j.Quantity))</td>
-                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories * j.Quantity))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Protein * j.Grams / 100))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Carbs * j.Grams / 100))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Fats * j.Grams / 100))</td>
+                <td>@day.Recipes.Sum(i => i.Ingredients.Sum(j => j.Ingredient.Calories * j.Grams / 100))</td>
                 <td>
                     <a class="btn btn-dark" asp-controller="Day" asp-action="Update" asp-route-id="@day.Id">edit</a>
                     <a class="btn btn-dark" asp-controller="Day" asp-action="Delete" asp-route-id="@day.Id">delete</a>
